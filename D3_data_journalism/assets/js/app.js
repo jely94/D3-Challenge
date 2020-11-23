@@ -30,8 +30,8 @@ var chosenXAxis = "smokes";
 function xScale(stateData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(stateData, d => d[chosenXAxis]) * 0.8,
-      d3.max(stateData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(stateData, d => d[chosenXAxis]) * 0.95,
+      d3.max(stateData, d => d[chosenXAxis]) * 1.05
     ])
     .range([0, width]);
 
@@ -44,7 +44,7 @@ function renderAxes(newXScale, xAxis) {
   var bottomAxis = d3.axisBottom(newXScale);
 
   xAxis.transition()
-    .duration(1000)
+    .duration(3000)
     .call(bottomAxis);
 
   return xAxis;
@@ -55,7 +55,7 @@ function renderAxes(newXScale, xAxis) {
 function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 
   circlesGroup.transition()
-    .duration(1000)
+    .duration(3000)
     .attr("cx", d => newXScale(d[chosenXAxis]));
 
   return circlesGroup;
@@ -109,7 +109,7 @@ d3.csv("stateData.csv").then(function(stateData, err) {
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(stateData, d => d.poverty)])
+    .domain([6, d3.max(stateData, d => d.poverty)])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -133,9 +133,9 @@ d3.csv("stateData.csv").then(function(stateData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.poverty))
-    .attr("r", 20)
-    .attr("fill", "green")
+    .attr("r", 8)
     .attr("opacity", ".5");
+      
 
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
