@@ -78,17 +78,17 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   var label;
 
   if (chosenXAxis === "smokes") {
-    label = "Percentage of Smokers:";
+    label = "% Smokers:";
   }
   else {
-    label = "Percentage of Obesity:";
+    label = "Obesity %:";
   }
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<br>${"% in Poverty"} ${d.poverty}<br>${"% Smokers:"} ${d[chosenXAxis]}`);
+      return (`${d.state}<br>${"% in Poverty"} ${d.poverty}<br>${label} ${d[chosenXAxis]}`);
     });
 
   circlesGroup.call(toolTip);
