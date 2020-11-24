@@ -61,6 +61,15 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
   return circlesGroup;
 }
 
+function renderText(textGroup, newXScale, chosenXAxis) {
+
+  textGroup.transition()
+    .duration(3000)
+    .attr("x", d => newXScale(d[chosenXAxis]) - 3);
+
+  return textGroup;
+}
+
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
@@ -133,8 +142,19 @@ d3.csv("stateData.csv").then(function(stateData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.poverty))
-    .attr("r", 8)
+    .attr("r", 10)
     .attr("opacity", ".5");
+
+  var textGroup = chartGroup.selectAll("text.abbr")
+    .data(stateData)
+    .enter()
+    .append("text")
+    .style("font-size", "8px")
+    .attr("class", "abbr")
+    .attr("x", d => xLinearScale(d[chosenXAxis]) + -5.25)
+    .attr("y", d => yLinearScale(d.poverty) + 3)
+    .attr("stroke", "white")
+    .text(d => d.abbr);
       
 
   // Create group for two x-axis labels
@@ -188,6 +208,7 @@ d3.csv("stateData.csv").then(function(stateData, err) {
 
         // updates circles with new x values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+        textGroup = renderText(textGroup, xLinearScale, chosenXAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);

@@ -32,18 +32,18 @@ body {
 
 .chart::before {
   position: absolute;
-  top: 50px;
-  left: 300px;
+  top: 25px;
+  left: 150px;
   z-index: -1;
   display: block;
-  width: 400px;
-  height: 300px;
+  width: 750px;
+  height: 375px;
   content: " ";
-  background-image: url("ButtsVsFats.jpg");
+  background-image: url("../../Images/ButtsVsFats.jpg");
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .tooltip {
@@ -69,15 +69,15 @@ body {
 
 .active {
   font-weight: bold;
-  fill: rgb(235, 24, 24);
-  fill: #551aaf;
+  fill: rgb(189, 235, 24);
+  fill: rgb(29, 49, 226);
   transition: fill 0.3s ease-out;
   text-anchor: middle;
 }
 
 .inactive {
   font-weight: lighter;
-  fill: #551aaf;
+  fill: rgb(29, 49, 226);
   transition: fill 0.3s ease-out;
   text-anchor: middle;
 }
