@@ -33,11 +33,11 @@ body {
 .chart::before {
   position: absolute;
   top: 25px;
-  left: 150px;
+  left: 125px;
   z-index: -1;
   display: block;
-  width: 750px;
-  height: 375px;
+  width: 775px;
+  height: 385px;
   content: " ";
   background-image: url("../../Images/ButtsVsFats.jpg");
   background-repeat: no-repeat;

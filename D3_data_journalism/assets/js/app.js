@@ -61,6 +61,8 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
   return circlesGroup;
 }
 
+// function used for moving the circle text with a transition to
+// new circles
 function renderText(textGroup, newXScale, chosenXAxis) {
 
   textGroup.transition()
@@ -86,7 +88,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
+      return (`${d.state}<br>${"% in Poverty"} ${d.poverty}<br>${"% Smokers:"} ${d[chosenXAxis]}`);
     });
 
   circlesGroup.call(toolTip);
@@ -118,7 +120,7 @@ d3.csv("stateData.csv").then(function(stateData, err) {
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([6, d3.max(stateData, d => d.poverty)])
+    .domain([6, d3.max(stateData, d => d.poverty) + 1])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -149,7 +151,7 @@ d3.csv("stateData.csv").then(function(stateData, err) {
     .data(stateData)
     .enter()
     .append("text")
-    .style("font-size", "8px")
+    .style("font-size", "8.5px")
     .attr("class", "abbr")
     .attr("x", d => xLinearScale(d[chosenXAxis]) + -5.25)
     .attr("y", d => yLinearScale(d.poverty) + 3)
