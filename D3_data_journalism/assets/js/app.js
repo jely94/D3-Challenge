@@ -144,18 +144,18 @@ d3.csv("stateData.csv").then(function(stateData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.poverty))
-    .attr("r", 10)
+    .attr("r", 11)
     .attr("opacity", ".5");
 
   var textGroup = chartGroup.selectAll("text.abbr")
     .data(stateData)
     .enter()
     .append("text")
-    .style("font-size", "8.5px")
+    .style("font-size", "9.5px")
     .attr("class", "abbr")
-    .attr("x", d => xLinearScale(d[chosenXAxis]) + -5.25)
+    .attr("x", d => xLinearScale(d[chosenXAxis]) + -7)
     .attr("y", d => yLinearScale(d.poverty) + 3)
-    .attr("stroke", "white")
+    .attr("stroke", "black")
     .text(d => d.abbr);
       
 
